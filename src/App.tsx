@@ -6,6 +6,7 @@ import MovieDetails from "./pages/MovieDetails";
 import Movies from "./pages/Movies";
 import NotFound from "./pages/NotFound";
 import ThemeProvider from "./context/ThemeContext/ThemeProvider";
+import MoviesProvider from "./context/useMovies/MoviesProvider";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -26,7 +27,9 @@ const App = () => {
   ]);
   return (
     <ThemeProvider>
-      <RouterProvider router={router} />
+      <MoviesProvider>
+        <RouterProvider router={router} />
+      </MoviesProvider>
     </ThemeProvider>
   );
 };
