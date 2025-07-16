@@ -1,9 +1,5 @@
-import type { FC } from "react"
+const Favorites = () => {
+  return <div>Favorites</div>;
+};
 
-const Favorites: FC = () => {
-  return (
-    <div>Favorites</div>
-  )
-}
-
-export default Favorites
+export default Favorites;

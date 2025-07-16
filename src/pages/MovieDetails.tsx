@@ -1,9 +1,5 @@
-import type { FC } from "react"
+const MovieDetails = () => {
+  return <div>MovieDetails</div>;
+};
 
-const MovieDetails: FC = () => {
-  return (
-    <div>MovieDetails</div>
-  )
-}
-
-export default MovieDetails
+export default MovieDetails;

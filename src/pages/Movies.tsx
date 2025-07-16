@@ -1,6 +1,4 @@
-import type { FC } from "react";
-
-const Movies: FC = () => {
+const Movies = () => {
   return <div>Movies</div>;
 };
 

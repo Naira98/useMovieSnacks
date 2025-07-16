@@ -4,6 +4,8 @@ import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
 import Movies from "./pages/Movies";
+import NotFound from "./pages/NotFound";
+import ThemeProvider from "./context/ThemeContext/ThemeProvider";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -18,11 +20,15 @@ const App = () => {
         { path: "/movies", element: <Movies /> },
         { path: "/movies/:id", element: <MovieDetails /> },
         { path: "/favorites", element: <Favorites /> },
-        { path: "*", element: <div>404</div> },
+        { path: "*", element: <NotFound /> },
       ],
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 };
 
 export default App;

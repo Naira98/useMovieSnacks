@@ -1,6 +1,4 @@
-import type { FC } from "react";
-
-const Home: FC = () => {
+const Home = () => {
   return <div>Home</div>;
 };
 

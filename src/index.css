@@ -1,1 +1,42 @@
 @import "tailwindcss";
+
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+
+  --bg: #FAF3E0;
+  --text: #222222;
+  --primary: #E74C3C;
+  --accent: #9B59B6;
+
+
+/* .dark {
+  --bg: #121212;
+  --text: #FFFFFF;
+  --primary: #C0392B;
+  --accent: #6C3483;
+} */
+}
+
+@layer utilities {
+  .bg-theme {
+    background-color: var(--bg);
+  }
+  .text-theme {
+    color: var(--text);
+  }
+  .bg-primary {
+    background-color: var(--primary);
+  }
+  .bg-accent {
+    background-color: var(--accent);
+  }
+  .text-primary {
+    color: var(--primary);
+  }
+  .text-accent {
+    color: var(--accent);
+  }
+}
