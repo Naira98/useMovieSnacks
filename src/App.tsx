@@ -6,7 +6,7 @@ import MovieDetails from "./pages/MovieDetails";
 import Movies from "./pages/Movies";
 import NotFound from "./pages/NotFound";
 import MoviesProvider from "./context/useMovies/MoviesProvider";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import GuestOnlyRoute from "./components/GuestsRoute";
