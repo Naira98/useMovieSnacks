@@ -1,12 +1,16 @@
 import HeroSlider from "../components/HeroSlider";
-// import useMovies from "../context/useMovies/useMovies";
+import useMovies from "../context/useMovies/useMovies";
+import Spinner from "../components/Spinner";
+import RecentMovies from "../components/RecentMovies";
 
 const Home = () => {
-  // const { movies } = useMovies();
-  // console.log(movies);
+  const { movies } = useMovies();
+  if (!movies.length) return <Spinner />;
+
   return (
-    <div className="bg-theme">
+    <div className="min-h-screen bg-gray-900 text-white gap-3">
       <HeroSlider />
+      <RecentMovies />
     </div>
   );
 };

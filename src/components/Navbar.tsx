@@ -5,17 +5,16 @@ const Navbar = () => {
   const location = useLocation();
 
   const navLinkClass = (path: string) =>
-    `text-md font-medium transition-colors hover:text-primary ${
-      location.pathname === path ? "text-primary" : "text-theme"
+    `text-md font-medium transition-colors hover:text-red-500 ${
+      location.pathname === path ? "text-red-500" : "text-gray-300"
     }`;
 
   return (
-    <nav className="bg-theme flex items-center justify-between px-10 py-4 shadow-sm">
+    <nav className="bg-gray-900 text-white flex items-center justify-between px-10 py-4 shadow-md">
 
       <Link to="/" className="flex items-center gap-2">
         <img src={logo} alt="Logo" className="w-64 object-contain" />
       </Link>
-
 
       <div className="flex items-center gap-6">
         <Link to="/" className={navLinkClass("/")}>

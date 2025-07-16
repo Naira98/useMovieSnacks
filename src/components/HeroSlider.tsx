@@ -13,20 +13,19 @@ const HeroSlider = () => {
 
   const goPrev = useCallback(() => {
     setCurrent((prev) => (prev === 0 ? total - 1 : prev - 1));
-  }, [setCurrent, total]);
+  }, [total]);
 
   const goNext = useCallback(() => {
     setCurrent((prev) => (prev === total - 1 ? 0 : prev + 1));
-  }, [setCurrent, total]);
-
+  }, [total]);
 
   useEffect(() => {
-    const timer = setInterval(goNext, 2000);
+    const timer = setInterval(goNext, 3000);
     return () => clearInterval(timer);
   }, [goNext]);
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative mx-auto w-full max-w-4xl overflow-hidden px-4">
       <div
         className="flex transition-transform duration-700 ease-in-out"
         style={{
@@ -41,7 +40,7 @@ const HeroSlider = () => {
             style={{ width: `${100 / sliderImages.length}%` }}
           >
             <div
-              className="h-[350px] bg-cover bg-center md:h-[500px]"
+              className="h-[350px] md:h-[500px] bg-cover bg-center rounded-lg"
               style={{ backgroundImage: `url(${img})` }}
             />
           </div>
@@ -50,13 +49,13 @@ const HeroSlider = () => {
 
       <button
         onClick={goPrev}
-        className="absolute top-1/2 left-4 z-10 h-10 w-10 -translate-y-1/2 rounded-full bg-white/70 text-black shadow hover:bg-white"
+        className="absolute top-1/2 left-4 z-10 h-10 w-10 -translate-y-1/2 rounded-full bg-gray-700/70 text-white shadow hover:bg-gray-700"
       >
         ◀
       </button>
       <button
         onClick={goNext}
-        className="absolute top-1/2 right-4 z-10 h-10 w-10 -translate-y-1/2 rounded-full bg-white/70 text-black shadow hover:bg-white"
+        className="absolute top-1/2 right-4 z-10 h-10 w-10 -translate-y-1/2 rounded-full bg-gray-700/70 text-white shadow hover:bg-gray-700"
       >
         ▶
       </button>
@@ -67,7 +66,7 @@ const HeroSlider = () => {
             key={index}
             onClick={() => setCurrent(index)}
             className={`h-3 w-3 cursor-pointer rounded-full ${
-              index === current ? "bg-primary" : "bg-gray-300"
+              index === current ? "bg-red-500" : "bg-gray-500"
             }`}
           />
         ))}

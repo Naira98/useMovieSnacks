@@ -1,18 +1,14 @@
 @import "tailwindcss";
 
-
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-
-  --bg: #FAF3E0;
+  --bg: #faf3e0;
   --text: #222222;
-  --primary: #E74C3C;
-  --accent: #9B59B6;
+  --primary: #e74c3c;
+  --accent: #9b59b6;
 
-
-/* .dark {
+  /* .dark {
   --bg: #121212;
   --text: #FFFFFF;
   --primary: #C0392B;
@@ -38,5 +34,38 @@
   }
   .text-accent {
     color: var(--accent);
+  }
+
+  .loader {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  .loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-bottom-color: #ff3d00;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
