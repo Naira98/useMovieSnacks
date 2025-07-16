@@ -8,8 +8,8 @@ import {
   FaHeart,
   FaRegHeart,
 } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import useMovies from "../context/useMovies/useMovies";
-import useRating from "../hooks/useRating";
 import useFavorites from "../hooks/useFavorites";
 
 const MovieDetails = () => {
@@ -17,10 +17,27 @@ const MovieDetails = () => {
   const { movies } = useMovies();
   const { isFavorite, toggleFavorite } = useFavorites();
 
-  const [rating, handleRating, tempRating, handleMouseEnter, handleMouseLeave] =
-    useRating();
-
   const movie = movies.find((m) => m.id === Number(movieId));
+
+  const [rating, setRating] = useState<number | undefined>(undefined);
+  const [tempRating, setTempRating] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!movie) return;
+    const savedRatings = JSON.parse(localStorage.getItem("ratings") || "{}");
+    setRating(savedRatings[movie.id]);
+  }, [movie]);
+
+  const handleRating = (value: number) => {
+    if (!movie) return;
+    const savedRatings = JSON.parse(localStorage.getItem("ratings") || "{}");
+    const updatedRatings = { ...savedRatings, [movie.id]: value };
+    localStorage.setItem("ratings", JSON.stringify(updatedRatings));
+    setRating(value);
+  };
+
+  const handleMouseEnter = (value: number) => setTempRating(value);
+  const handleMouseLeave = () => setTempRating(null);
 
   if (!movie) {
     return (
@@ -54,9 +71,10 @@ const MovieDetails = () => {
               ) : (
                 <FaRegHeart className="text-xl" />
               )}
-              
             </button>
           </div>
+
+          {/* Details */}
           <p className="mb-2 flex items-center gap-2 text-sm text-gray-400">
             <FaGlobe className="text-gray-500" /> Language:{" "}
             {movie.original_language.toUpperCase()}
@@ -86,7 +104,7 @@ const MovieDetails = () => {
             </div>
           </div>
 
-          {/* Star Rating Section */}
+          {/* Rating */}
           <div className="mt-4">
             <p className="mb-2 text-sm text-gray-300">Your Rating:</p>
             <div className="flex items-center gap-2">
@@ -95,7 +113,7 @@ const MovieDetails = () => {
                   <button
                     key={num}
                     onMouseEnter={() => handleMouseEnter(num)}
-                    onMouseLeave={() => handleMouseLeave()}
+                    onMouseLeave={handleMouseLeave}
                     onClick={() => handleRating(num)}
                     className="focus:outline-none"
                   >
@@ -118,7 +136,7 @@ const MovieDetails = () => {
             </div>
           </div>
 
-          {/* Back Button */}
+          {/* Back */}
           <Link
             to="/movies"
             className="text-primary mt-10 inline-block underline transition-colors hover:text-red-500"

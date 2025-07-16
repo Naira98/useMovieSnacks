@@ -6,6 +6,10 @@ import MovieDetails from "./pages/MovieDetails";
 import Movies from "./pages/Movies";
 import NotFound from "./pages/NotFound";
 import MoviesProvider from "./context/useMovies/MoviesProvider";
+import Login from "./pages/login";
+import Register from "./pages/Register";
+import ProtectedRoute from "./components/ProtectedRoute";
+import GuestOnlyRoute from "./components/GuestsRoute";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -15,11 +19,53 @@ const App = () => {
       children: [
         {
           index: true,
-          element: <Home />,
+          element: (
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          ),
         },
-        { path: "/movies", element: <Movies /> },
-        { path: "/movies/:movieId", element: <MovieDetails /> },
-        { path: "/favorites", element: <Favorites /> },
+        {
+          path: "/register",
+          element: (
+            <GuestOnlyRoute>
+              <Register />
+            </GuestOnlyRoute>
+          ),
+        },
+        {
+          path: "/login",
+          element: (
+            <GuestOnlyRoute>
+              <Login />
+            </GuestOnlyRoute>
+          ),
+        },
+        {
+          path: "/movies",
+          element: (
+            <ProtectedRoute>
+              {" "}
+              <Movies />{" "}
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/movies/:movieId",
+          element: (
+            <ProtectedRoute>
+              <MovieDetails />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/favorites",
+          element: (
+            <ProtectedRoute>
+              <Favorites />
+            </ProtectedRoute>
+          ),
+        },
         { path: "*", element: <NotFound /> },
       ],
     },
