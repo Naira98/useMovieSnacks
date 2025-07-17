@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router";
 import type { IUser } from "../types/IUser";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,6 +16,16 @@ const Register = () => {
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!name || !email || !password) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
 
     const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
 

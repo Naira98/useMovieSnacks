@@ -1,16 +1,16 @@
 import HeroSlider from "../components/HeroSlider";
-import useMovies from "../context/useMovies/useMovies";
 import Spinner from "../components/Spinner";
 import RecentMovies from "../components/RecentMovies";
+import { Suspense } from "react";
 
 const Home = () => {
-  const { movies } = useMovies();
-  if (!movies.length) return <Spinner />;
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white gap-3">
+    <div className="min-h-screen gap-3 bg-gray-900 text-white">
       <HeroSlider />
-      <RecentMovies />
+      <Suspense fallback={<Spinner />}>
+        <RecentMovies />
+      </Suspense>
     </div>
   );
 };
